@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Revendedora Avon Quelimane</title>
+    <link rel="shortcut icon" href="../assets/img/Power Stay Avon_ maquiagem de longa duração _ Avon.jfif" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1fa855;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .product-info {
+                padding: 15px;
+            }
+
+            .product-name {
+                font-size: 1em;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+   <a href="../index.html"><button class="back-btn" >← Voltar</button></a> 
+
+    <div class="container">
+        <header>
+            <h1>💄 Nossos Produtos</h1>
+            <p>Escolha seu produto favorito e faça seu pedido pelo WhatsApp</p>
+        </header>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+    <script>
+        const whatsappNumber = '866964164';
+        
+        // Array de produtos - ADICIONE AS IMAGENS AQUI
+        const products = [
+            {
+                name: 'Perfume-honey',
+                description: 'Perfume feminino sofisticado',
+                image: '../assets/img/perfumes.jpg' // Substitua pelo caminho da sua imagem
+            },
+            {
+                name: 'Attraction Closer',
+                description: 'Perfume e Creme corporal',
+                 image: '../assets/img/img4.jpg'
+            },
+            {
+                name: 'Avon Care - Abacate',
+                description: 'Loção corporal nutritiva',
+                image: '../assets/img/abacat.jpg'
+            },
+            {
+                name: 'Eve Privée',
+                description: 'Body Lotion elegante',
+                image: '../assets/img/img6.jpg'
+            },
+            {
+                name: 'Musk-kit',
+                description: 'Kit completo de cuidados',
+                 image: '../assets/img/kit.jpg'
+            },
+            {
+                name: 'Musk Roll-On',
+                description: 'Desodorante que funciona',
+                 image: '../assets/img/img8.jpg'
+            },
+            {
+                name: 'ATTRACTION',
+                description: 'Perfume',
+               image: '../assets/img/img12.jpg'
+            },
+            {
+                name: 'Care-creme',
+                description: 'Cremes',
+                 image: '../assets/img/img13.jpg'
+            },
+            {
+                name: 'perfume-rollon',
+                description: 'perfumes e rolons',
+                image: '../assets/img/img2.jpg'
+            },
+            {
+                name: 'Black Sued',
+                description: 'conjuto Perfume',
+                 image: '../assets/img/img15.jpg'
+            },
+            {
+                name: 'kit-tumorow',
+                description: 'Care-creme',
+                image: '../assets/img/favoritos.jpg'
+            },
+            {
+                name: 'CREMES',
+                description: 'CREMES-24h',
+                image: '../assets/img/img17.jpg'
+            },
+            {
+                name: 'TODAY',
+                description: 'CREMES',
+                image: '../assets/img/img7.jpg'
+            },
+            {
+                name: 'outros...',
+                description: 'diversos',
+                image: '../assets/img/img1.jpg'
+            },
+            {
+                name: 'Care-creme',
+                description: 'Care-creme',
+                image: '../assets/img/img11.jpg'
+            },
+            {
+                name: 'creme de maos e creme corporal',
+                description: 'creme de maos e creme corporal',
+                 image: '../assets/img/mas vendido.jpg'
+            },
+        ];
+
+        function sendToWhatsApp(product) {
+            const message = encodeURIComponent(
+                `Olá! Tenho interesse no produto:\n\n` +
+                `📦 ${product.name}\n` +
+                `${product.description}\n\n` +
+                `Gostaria de mais informações!`
+            );
+            
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            
+            products.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                card.innerHTML = `
+                    <img src="${product.image}" 
+                         alt="${product.name}" 
+                         class="product-image"
+                         onerror="this.style.display='flex'; this.innerHTML='Imagem ${index + 1}'">
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <button class="whatsapp-btn" onclick='sendToWhatsApp(${JSON.stringify(product)})'>
+                            <span>💬</span>
+                            <span>Pedir pelo WhatsApp</span>
+                        </button>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Tornar a função disponível globalmente
+        window.sendToWhatsApp = sendToWhatsApp;
+
+        // Renderizar produtos ao carregar a página
+        renderProducts();
+    </script>
+</body>
+</html>
